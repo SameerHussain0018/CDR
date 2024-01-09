@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSV Upload</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+    
+            h1 {
+                color: #333;
+            }
+    
+            form {
+                max-width: 400px;
+                margin: 20px auto;
+                background: #fff;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+    
+            input[type="file"] {
+                display: block;
+                margin-bottom: 10px;
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+    
+            button {
+                background-color: lightblue;
+                color: #fff;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+    
+            button:hover {
+                background-color: #4CAF50; /* Change the color on hover if desired */
+            }
+        </style>
+    </head>
+<body>
+    <form action="/convert" method="post" enctype="multipart/form-data">
+        <h1 style="display: flex;justify-content: center;" >Excel to CSV Converter</h1>
+
+        <input type="file" name="file" accept=".xlsx, .xls">
+        <button type="submit">Convert</button>
+    </form>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <h1 style="display: flex;justify-content: center;" >CDR Automation</h1>
+
+        <!-- Ensure the name attribute is set to "file" -->
+        <input type="file" name="file" accept=".csv" required onchange="updateButtonColor(this)">
+        <button type="submit" id="uploadButton">Upload and Process</button>
+
+        <script>
+            function updateButtonColor(input) {
+                var button = document.getElementById('uploadButton');
+                button.style.backgroundColor = input.value ? '#4CAF50' : 'lightblue';
+            }
+        </script>
+    </form>
+</body>
+</html>

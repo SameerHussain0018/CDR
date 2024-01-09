@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Processing Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            margin: 0;
+            text-align: center;
+        }
+
+        p {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+     
+    </style>
+</head>
+<body>
+    <h1>Automation Result</h1>
+    <div class="success-alert">
+        <p>Modified DataFrame:</p>
+        {{ df | safe }}
+        <p>Output CSV file: <a href="{{ output_file }}" target="_blank">{{ output_file }}</a></p>
+    
+    </div>
+
+    <script>
+        // Function to show an alert on successful modification
+        function showSuccessAlert() {
+            alert('Your data is modified successfully!');
+        }
+
+        // Function to trigger download of modified DataFrame in Excel format
+        function downloadExcel(file) {
+            // Create a hidden link element with the file path in the URL
+            var link = document.createElement('a');
+            link.href = '/download_excel?file=' + encodeURIComponent(file);
+            link.target = '_blank';  // Open the link in a new tab/window
+
+            // Trigger a click on the link to initiate the download
+            link.click();
+        }
+
+        // Trigger the alert and download Excel automatically
+        showSuccessAlert();
+        downloadExcel('{{ output_file }}');
+    </script>
+</body>
+</html>
